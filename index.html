@@ -457,6 +457,16 @@
             <p>Designed for professional representation.</p>
         </div>
     </footer>
+<script>
+        // This targets the ID you gave your image container
+        const secureArea = document.getElementById('secure-area');
 
+        secureArea.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert("Privacy Notice: Image downloading is disabled.");
+        }, false);
+    </script>
+
+</body> </html>
 </body>
 </html>
