@@ -3,192 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Identity 2026</title>
+    <title>Portfolio | 2026 Identity</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&family=Plus+Jakarta+Sans:wght@200;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&family=Plus+Jakarta+Sans:wght@200;400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg: #070708;
+            --bg: #0a0a0b;
             --text: #ffffff;
+            --accent: #c5a358; /* Gold accent */
             --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.1);
             --font-main: 'Plus Jakarta Sans', sans-serif;
             --font-display: 'Playfair Display', serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; } /* Custom invisible cursor feel */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
             background-color: var(--bg); 
             color: var(--text); 
             font-family: var(--font-main); 
-            overflow-x: hidden;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
         /* --- STUNNING HERO BANNER --- */
         .hero {
-            height: 100vh;
+            height: 90vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-left: 10%;
-            position: relative;
+            align-items: center;
+            padding: 0 10%;
+            border-bottom: 1px solid var(--border);
         }
 
         .hero h1 {
             font-family: var(--font-display);
-            font-size: clamp(4rem, 15vw, 12rem);
+            font-size: clamp(3.5rem, 8vw, 8rem);
             font-weight: 400;
-            line-height: 0.9;
-            letter-spacing: -0.04em;
-            text-transform: lowercase;
-            z-index: 2;
+            line-height: 1;
+            letter-spacing: -0.02em;
         }
 
-        .hero h1 span {
-            display: block;
-            padding-left: 20%;
-            font-style: italic;
-            font-weight: 700;
+        .hero span { color: var(--accent); font-style: italic; }
+
+        /* --- MAIN CONTENT GRID --- */
+        .container { padding: 100px 10%; }
+        .section-title { 
+            font-family: var(--font-display); 
+            font-size: 3rem; 
+            margin-bottom: 60px; 
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
         }
 
-        /* --- SPACED GRID LAYOUT --- */
-        .grid-container {
+        /* PROFILE SECTION */
+        .profile-grid {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 20px;
-            padding: 0 10% 100px;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 150px;
+            align-items: center;
         }
 
-        /* PHOTO SLOT 1 (Portrait) */
-        .photo-slot-large {
-            grid-column: 1 / 7;
+        .image-wrapper { 
+            position: relative; 
+            aspect-ratio: 3 / 2; 
+            overflow: hidden; 
             background: var(--glass);
-            aspect-ratio: 4 / 5;
             border: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
         }
+        
+        .shield { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 10; cursor: default; }
 
-        /* THE PROTECTED PROFILE IMAGE */
-        .image-wrapper { width: 100%; height: 100%; position: relative; }
-        .shield { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; }
         .image-wrapper img {
             width: 100%; height: 100%; object-fit: cover;
             image-rendering: high-quality;
-            filter: grayscale(100%) contrast(1.1); /* Cinematic Igloo look */
-            transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateZ(0);
         }
 
-        /* PHOTO SLOT 2 (Space for future work) */
-        .photo-slot-empty {
-            grid-column: 8 / 13;
-            margin-top: 200px; /* Asymmetric spacing */
+        /* --- TIMELINE & ACHIEVEMENTS --- */
+        .timeline { margin-bottom: 150px; }
+        
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .date { font-weight: 600; color: var(--accent); letter-spacing: 2px; }
+        .details h3 { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 10px; }
+        .details p { color: #888; max-width: 600px; }
+
+        /* --- CONTACT SECTION --- */
+        .contact {
             background: var(--glass);
-            aspect-ratio: 1 / 1;
+            padding: 80px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .contact h2 { font-family: var(--font-display); font-size: 3rem; margin-bottom: 20px; }
+        .contact a { 
+            color: var(--text); 
+            text-decoration: none; 
+            font-size: 1.5rem; 
+            border-bottom: 1px solid var(--accent);
+            transition: 0.3s;
+        }
+        .contact a:hover { color: var(--accent); }
+
+        /* --- PLACEHOLDER FOR EXTRA IMAGES --- */
+        .gallery-gap {
+            height: 400px;
+            background: var(--glass);
+            margin: 100px 0;
             border: 1px dashed var(--border);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255,255,255,0.2);
+            color: #444;
             font-size: 0.8rem;
-            letter-spacing: 2px;
-        }
-
-        /* --- CONTENT BLOCKS --- */
-        .statement {
-            grid-column: 2 / 7;
-            padding: 100px 0;
-            font-size: 1.5rem;
-            font-weight: 200;
-            line-height: 1.6;
-        }
-
-        .achievements {
-            grid-column: 8 / 12;
-            padding-top: 100px;
-        }
-
-        .achievements h3 {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-        }
-
-        .item {
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        /* --- HIDE DEFAULT MOUSE --- */
-        #custom-cursor {
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 999;
-            mix-blend-mode: difference;
-            transition: transform 0.1s ease;
+            letter-spacing: 4px;
         }
 
         @media (max-width: 900px) {
-            .grid-container { display: flex; flex-direction: column; }
-            .hero h1 { font-size: 5rem; }
+            .profile-grid, .timeline-item { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 4rem; }
         }
     </style>
 </head>
 <body>
 
-    <div id="custom-cursor"></div>
-
     <section class="hero">
-        <h1>pure<span>creative</span></h1>
+        <h1>Building the <span>Future</span> <br> through Design.</h1>
     </section>
 
-    <main class="grid-container">
-        <div class="photo-slot-large" id="secure-area">
-            <div class="shield"></div>
-            <div class="image-wrapper">
+    <div class="container">
+        
+        <section class="profile-grid">
+            <div class="image-wrapper" id="secure-area">
+                <div class="shield"></div>
                 <img src="assets/Profile_picture.jpeg" alt="Identity">
             </div>
-        </div>
+            <div class="bio">
+                <h2 class="section-title">The Profile</h2>
+                <p>Passionate about merging high-end aesthetics with functional technology. My approach is defined by precision, clarity, and the relentless pursuit of excellence in every project I architect.</p>
+                <br>
+                <p>Currently focusing on large-scale digital transformations and identity systems for modern enterprises.</p>
+            </div>
+        </section>
 
-        <div class="statement">
-            <p>I build digital architectures that resonate. My philosophy is rooted in the "Igloo" approach: creating warmth and human connection within the cold precision of technology.</p>
-        </div>
+        <div class="gallery-gap"> [ IMAGE SLOT _ 02 ] </div>
 
-        <div class="photo-slot-empty">
-            [PLACEHOLDER FOR PROJECT_01]
-        </div>
+        <section class="timeline">
+            <h2 class="section-title">Timeline</h2>
 
-        <div class="achievements">
-            <h3>Excellence</h3>
-            <div class="item"><span>Lead Designer</span> <span>2026</span></div>
-            <div class="item"><span>Technical Architect</span> <span>2024</span></div>
-            <div class="item"><span>Innovation Award</span> <span>2023</span></div>
-        </div>
-    </main>
+            <div class="timeline-item">
+                <div class="date">2024 — 2026</div>
+                <div class="details">
+                    <h3>Senior Strategy Lead</h3>
+                    <p>Spearheaded the digital transition for multi-national clients. Focused on user-centric architecture and high-performance scalability.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="date">2022 — 2024</div>
+                <div class="details">
+                    <h3>Project Architect</h3>
+                    <p>Designed and managed 15+ high-conversion platforms. Recognized for innovative UI/UX solutions and efficient workflow management.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="date">2020 — 2022</div>
+                <div class="details">
+                    <h3>Technical Designer</h3>
+                    <p>Layed the foundation for brand identities through rigorous design systems and technical documentation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2>Let's connect.</h2>
+            <p style="margin-bottom: 30px;">Available for consulting and high-impact partnerships.</p>
+            <a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a>
+        </section>
+
+    </div>
 
     <script>
-        // Custom Smooth Cursor
-        const cursor = document.getElementById('custom-cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Security
         document.getElementById('secure-area').addEventListener('contextmenu', e => {
             e.preventDefault();
+            alert("Privacy: Image downloading is disabled.");
         });
     </script>
+
 </body>
 </html>
