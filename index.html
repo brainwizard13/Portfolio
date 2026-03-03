@@ -3,140 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Professional Portfolio</title>
+    <title>Portfolio | Identity 2026</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&family=Plus+Jakarta+Sans:wght@200;400&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg: #0a0a0b;
-            --accent: #ffffff;
-            --gold: #c5a358;
-            --font-serif: 'Playfair Display', serif;
-            --font-sans: 'Montserrat', sans-serif;
+            --bg: #070708;
+            --text: #ffffff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-display: 'Playfair Display', serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; } /* Custom invisible cursor feel */
         
         body { 
             background-color: var(--bg); 
-            color: white; 
-            font-family: var(--font-sans); 
-            line-height: 1.6;
+            color: var(--text); 
+            font-family: var(--font-main); 
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .section { 
-            padding: 80px 10%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            min-height: 100vh; 
+        /* --- STUNNING HERO BANNER --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 10%;
+            position: relative;
         }
 
-        .grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 60px; 
-            align-items: center; 
-            width: 100%; 
-            max-width: 1200px; 
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 400;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            text-transform: lowercase;
+            z-index: 2;
         }
 
-        /* --- THE IMAGE PROTECTION & QUALITY --- */
-        .image-wrapper { 
-            position: relative; 
-            width: 100%; 
-            /* 3/2 aspect ratio fits your 4087x2725 landscape photo perfectly */
-            aspect-ratio: 3 / 2; 
-            background: #151517; 
-            overflow: hidden; 
-            border: 1px solid rgba(255,255,255,0.1); 
+        .hero h1 span {
+            display: block;
+            padding-left: 20%;
+            font-style: italic;
+            font-weight: 700;
         }
 
-        .shield { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            z-index: 10; 
-            background: transparent; 
+        /* --- SPACED GRID LAYOUT --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+            padding: 0 10% 100px;
         }
 
-        .image-wrapper img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            display: block; 
-            user-select: none; 
-            -webkit-user-drag: none;
-            
-            /* FIX FOR PIXELATION */
-            image-rendering: -webkit-optimize-contrast; 
+        /* PHOTO SLOT 1 (Portrait) */
+        .photo-slot-large {
+            grid-column: 1 / 7;
+            background: var(--glass);
+            aspect-ratio: 4 / 5;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* THE PROTECTED PROFILE IMAGE */
+        .image-wrapper { width: 100%; height: 100%; position: relative; }
+        .shield { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; }
+        .image-wrapper img {
+            width: 100%; height: 100%; object-fit: cover;
             image-rendering: high-quality;
-            transform: translateZ(0);
+            filter: grayscale(100%) contrast(1.1); /* Cinematic Igloo look */
+            transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* --- TEXT STYLING --- */
-        .content h2 { font-family: var(--font-serif); font-size: 3rem; margin-bottom: 20px; font-style: italic; }
-        .content p { color: #888; margin-bottom: 30px; font-weight: 300; }
-        
-        .achievement-box {
-            border-left: 1px solid var(--gold);
-            padding-left: 20px;
-            margin-bottom: 30px;
+        /* PHOTO SLOT 2 (Space for future work) */
+        .photo-slot-empty {
+            grid-column: 8 / 13;
+            margin-top: 200px; /* Asymmetric spacing */
+            background: var(--glass);
+            aspect-ratio: 1 / 1;
+            border: 1px dashed var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.2);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
         }
 
-        .btn { 
-            display: inline-block; 
-            padding: 15px 35px; 
-            border: 1px solid white; 
-            color: white; 
-            text-decoration: none; 
-            letter-spacing: 2px; 
-            font-size: 0.8rem; 
-            text-transform: uppercase;
-            transition: 0.3s; 
+        /* --- CONTENT BLOCKS --- */
+        .statement {
+            grid-column: 2 / 7;
+            padding: 100px 0;
+            font-size: 1.5rem;
+            font-weight: 200;
+            line-height: 1.6;
         }
 
-        .btn:hover { background: white; color: black; }
+        .achievements {
+            grid-column: 8 / 12;
+            padding-top: 100px;
+        }
 
-        @media (max-width: 900px) { .grid { grid-template-columns: 1fr; text-align: center; } }
+        .achievements h3 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .item {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- HIDE DEFAULT MOUSE --- */
+        #custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        @media (max-width: 900px) {
+            .grid-container { display: flex; flex-direction: column; }
+            .hero h1 { font-size: 5rem; }
+        }
     </style>
 </head>
 <body>
 
-    <section class="section">
-        <div class="grid">
-            <div class="image-wrapper" id="secure-area">
-                <div class="shield"></div>
-                <img src="assets/Profile_picture.jpeg" alt="Professional Portrait">
-            </div>
+    <div id="custom-cursor"></div>
 
-            <div class="content">
-                <h2>The Profile</h2>
-                <p>An insightful summary of your professional journey. Connect your specific expertise with your long-term career goals here.</p>
-                
-                <div class="achievement-box">
-                    <h3 style="font-size: 1.2rem; color: var(--gold);">Major Achievement</h3>
-                    <p style="margin-bottom: 0; font-size: 0.9rem;">Lead architect on the 2026 digital expansion project.</p>
-                </div>
-
-                <a href="assets/your-resume.pdf" class="btn" target="_blank">Download CV</a>
-            </div>
-        </div>
+    <section class="hero">
+        <h1>pure<span>creative</span></h1>
     </section>
 
-    <script>
-        const secureArea = document.getElementById('secure-area');
-        secureArea.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            alert("This image is protected for privacy.");
-        }, false);
-    </script>
+    <main class="grid-container">
+        <div class="photo-slot-large" id="secure-area">
+            <div class="shield"></div>
+            <div class="image-wrapper">
+                <img src="assets/Profile_picture.jpeg" alt="Identity">
+            </div>
+        </div>
 
+        <div class="statement">
+            <p>I build digital architectures that resonate. My philosophy is rooted in the "Igloo" approach: creating warmth and human connection within the cold precision of technology.</p>
+        </div>
+
+        <div class="photo-slot-empty">
+            [PLACEHOLDER FOR PROJECT_01]
+        </div>
+
+        <div class="achievements">
+            <h3>Excellence</h3>
+            <div class="item"><span>Lead Designer</span> <span>2026</span></div>
+            <div class="item"><span>Technical Architect</span> <span>2024</span></div>
+            <div class="item"><span>Innovation Award</span> <span>2023</span></div>
+        </div>
+    </main>
+
+    <script>
+        // Custom Smooth Cursor
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Security
+        document.getElementById('secure-area').addEventListener('contextmenu', e => {
+            e.preventDefault();
+        });
+    </script>
 </body>
 </html>
