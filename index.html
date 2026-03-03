@@ -1,1 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Professional Profile</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 
+    <style>
+        /* ============================
+           RESET & BASIC SETUP
+           ============================ */
+        :root {
+            --bg-color: #0c0c0e; /* Deep, cinematic dark */
+            --text-main: #e0e0e0;
+            --text-subtle: #888;
+            --accent-primary: #f2f2f2; /* Bright contrast */
+            --accent-hover: #b0a379; /* Subtle "golden" mute hue */
+            
+            --font-head: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Prevent link underlines on all */
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        /* Generic Container for all sections */
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 0;
+        }
+
+        /* ============================
+           TYPOGRAPHY & UTILITIES
+           ============================ */
+        h1, h2, h3 {
+            font-family: var(--font-head);
+            font-weight: 300;
+            letter-spacing: -1px;
+            color: var(--accent-primary);
+        }
+
+        h2.section-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .subtitle {
+            font-family: var(--font-body);
+            font-weight: 300;
+            color: var(--text-subtle);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 60px;
+        }
+
+        .highlight {
+            color: var(--accent-hover);
+            font-style: italic;
+        }
+
+        /* ============================
+           NAVIGATION (Simple, Floating)
+           ============================ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(12, 12, 14, 0.95); /* matching bg */
+            padding: 20px 0;
+            backdrop-filter: blur(5px);
+        }
+
+        nav .container {
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+            color: #fff;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* ============================
+           HERO SECTION (The Hook)
+           ============================ */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-subtle);
+        }
+
+        /* Subtle scroll indicator animation */
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 1px solid var(--text-subtle);
+            border-radius: 15px;
+            opacity: 0.7;
+        }
+
+        .scroll-down::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 8px;
+            background: var(--text-subtle);
+            left: 50%;
+            top: 10px;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            animation: scroll-anim 2s infinite;
+        }
+
+        @keyframes scroll-anim {
+            0% { top: 10px; opacity: 1; }
+            100% { top: 30px; opacity: 0; }
+        }
+
+        /* ============================
+           PROFILE SECTION
+           ============================ */
+        #profile .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .profile-image-container {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border-radius: 5px;
+            /* subtle glow/shadow effect */
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: var(--transition);
+        }
+
+        .profile-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .profile-text p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: var(--text-main);
+            font-weight: 300;
+        }
+
+        /* ============================
+           ACHIEVEMENTS / EXPERIENCE
+           ============================ */
+        #achievements {
+            background-color: #0f0f11; /* Slight color shift */
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        /* Vertical line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background-color: #333;
+        }
+
+        .achievement-item {
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        /* The dots */
+        .achievement-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 10px;
+            width: 10px;
+            height: 10px;
+            background: var(--bg-color);
+            border: 1px solid var(--accent-primary);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .achievement-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .achievement-meta {
+            font-size: 0.8rem;
+            color: var(--text-subtle);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .achievement-item p {
+            font-weight: 300;
+            color: var(--text-main);
+        }
+
+        /* ============================
+           RESUME DOWNLOAD
+           ============================ */
+        #resume {
+            text-align: center;
+        }
+
+        #resume p {
+            max-width: 600px;
+            margin: 0 auto 50px;
+            font-weight: 300;
+        }
+
+        .btn-premium {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--accent-primary);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Creative Hover Animation for Button */
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-primary);
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .btn-premium:hover {
+            color: var(--bg-color);
+        }
+
+        .btn-premium:hover::before {
+            left: 0;
+        }
+
+        /* ============================
+           FOOTER
+           ============================ */
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            border-top: 1px solid #1a1a1c;
+            font-size: 0.8rem;
+            color: #555;
+            letter-spacing: 1px;
+        }
+
+        /* ============================
+           RESPONSIVE BREAKPOINTS (Tablet/Mobile)
+           ============================ */
+        @media (max-width: 900px) {
+            :root { font-size: 14px; } /* global scale down */
+            
+            #hero .hero-content h1 { font-size: 3.5rem; }
+            
+            #profile .profile-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+            .profile-image-container {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container { width: 90%; }
+            .nav-links { display: none; } /* Hide navigation on small screens */
+            
+            #hero .hero-content h1 { font-size: 2.8rem; }
+            h2.section-title { font-size: 2.5rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">INITIALS</a> <ul class="nav-links">
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#achievements">Timeline</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="mailto:your.email@gmail.com">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>YOUR FULL NAME</h1>
+            <p>A concise, punchy description of what you do. <br><span class="highlight">Creative Director / UX Lead / Developer</span></p>
+        </div>
+        <div class="scroll-down"></div>
+    </section>
+
+    <section id="profile">
+        <div class="container">
+            <h2 class="section-title">An introduction</h2>
+            <p class="subtitle">About my profile & approach</p>
+            
+            <div class="profile-grid">
+                <div class="profile-image-container">
+                    <img src="your-photo.jpg" alt="Your Name - Professional Portrait">
+                </div>
+                
+                <div class="profile-text">
+                    <h3>Summary</h3>
+                    <p>This is where you write your professional bio. Describe your expertise, your passion, and what makes your approach unique. Keep it concise, focused, and compelling for recruiters or collaborators.</p>
+                    
+                    <h3>Focus</h3>
+                    <p>Briefly list your main specializations or the core value you provide. (e.g., Strategic leadership, cross-platform design, technical architecture).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <div class="container">
+            <h2 class="section-title">Notable moments</h2>
+            <p class="subtitle">Highlights from my career trajectory</p>
+            
+            <div class="timeline">
+                
+                <div class="achievement-item">
+                    <h3>Most Recent Title / Achievement</h3>
+                    <p class="achievement-meta">Company Name | Month Year &ndash; Month Year</p>
+                    <p>A focused description of your role, key responsibilities, and specific, quantifiable achievements (e.g., "Led a team of 5 to launch X product, resulting in 20% growth"). Focus on outcomes, not just tasks.</p>
+                </div>
+                
+                <div class="achievement-item">
+                    <h3>Previous Milestone Title</h3>
+                    <p class="achievement-meta">Key Organization | Year &ndash; Year</p>
+                    <p>Describe your previous key position or a major academic/personal achievement that demonstrates relevant skills and leadership. Highlight impact.</p>
+                </div>
+
+                <div class="achievement-item">
+                    <h3>Foundational Experience</h3>
+                    <p class="achievement-meta">Role / Honor | Location | Year</p>
+                    <p>A key moment in your professional history that provides depth to your career narrative.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="resume">
+        <div class="container">
+            <h2 class="section-title">The official record</h2>
+            <p class="subtitle">Download my resume</p>
+            <p>For a detailed breakdown of my professional experience, education, skills, and technical proficiencies, please access my current curriculum vitae.</p>
+            
+            <a href="your-resume.pdf" class="btn-premium" target="_blank">View / Download CV (PDF)</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 [Your Name]. All Rights Reserved.</p>
+            <p>Designed for professional representation.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
